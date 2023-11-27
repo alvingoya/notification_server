@@ -1,0 +1,14 @@
+services:
+  openresty_notification:
+    container_name: openresty_notification
+    image: openresty/openresty:alpine
+    ports:
+      - 8891:80
+    volumes:
+      - ./openresty/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./openresty/conf:/etc/nginx/conf.d:ro
+    networks:
+      - notification_network
+networks:
+  notification_network:
+    driver: bridge
